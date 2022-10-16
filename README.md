@@ -15,3 +15,4 @@ Follow me [Instagram](https://instagram.com/elisperezmusic).
 - Se creó archivo `index.html`.
 - Se usó Bootstrap 5.2.2 para mostrar navbar y cards.
 - La imagen `no-image.jpg` es mostrada en los productos que no tienen imagen.
+- Se creó el archivo `app.js` con los scripts para llamar al back-end LOCAL y mostrarlos los datos en el index.html.
