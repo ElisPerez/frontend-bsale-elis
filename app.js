@@ -12,12 +12,14 @@ const container = document.querySelector('#container');
 const divContainerCards = $('#div-container-cards');
 const divPagination = $('#pagination-container');
 
-
+// Transforma en mayúscula la primera letra de un string
 function capitalizerFirstLetter(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
+// getItems muestra en el html las categorias y los productos.
 async function getItems() {
+  // Limpiamos contenedor
   container.innerHTML = '';
   // Get all Categories:
   const categories = await fetch(urlCategories)
@@ -40,6 +42,7 @@ async function getItems() {
     .catch(err => console.log('getProducts error:', err));
   // console.log(products);
 
+  // Paginamos los productos
   divPagination.pagination({
     dataSource: products,
     pageSize: 4,
@@ -74,14 +77,19 @@ async function getItems() {
 }
 
 async function getProductsByCategory(id, name) {
+  // Limpiamos contenedor
   container.innerHTML = '';
+
+  // Cambiamos titulo
   pageName.innerHTML = `${name}`;
 
+  // Llamado a la API para obtener productos
   const products = await fetch(urlCategory + `?id=${id}`)
     .then(res => res.json())
     .catch(err => console.log('getProducts error:', err));
   // console.log(products);
 
+  // Paginación
   divPagination.pagination({
     dataSource: products,
     pageSize: 4,
@@ -119,22 +127,27 @@ async function getProductsByCategory(id, name) {
 form.onsubmit = async function (e) {
   e.preventDefault();
 
+  // Cambiamos titulo
   pageName.innerHTML = `Search`;
   const search = document.form.search.value;
   // console.log(search);
 
+  // Llamado a la API
   const products = await fetch(urlSearch + `?q=${search}`)
     .then(res => res.json())
     .catch(err => console.log('getProducts error:', err));
   // console.log(products);
 
+  // Condicionamos la vista a que muestre un Mensaje o los productos.
   if (products.length === 0) {
     container.innerHTML = `<div class="col mb-3 d-flex justify-content-center"><h1>Producto No Encontrado</h1></div>`;
     divContainerCards.html('');
     divPagination.html('');
   } else {
+    // Limpiamos el contenedor
     container.innerHTML = '';
 
+    // Paginamos los resultados
     divPagination.pagination({
       dataSource: products,
       pageSize: 4,
