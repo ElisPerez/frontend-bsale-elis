@@ -38,17 +38,20 @@ async function getItems() {
   divContainerCards.innerHTML = products
     .map(
       product => `
-    <div class="col mb-3">
-      <div class="card" style="width: 12rem">
-      <img src="${
-        product.url_image ? product.url_image : 'no-image.jpg'
-      }" class="card-img-top" alt="${product.name}" />
-        <div class="card-body">
-          <h6 class="card-title">${product.name}</h6>
-          <p class="card-title">Price: $${product.price}</p>
+        <div class="col col-xs-12 col-sm-6 col-md-4 col-lg-3 mb-3 d-flex justify-content-center">
+          <div class="card" style="width: 14rem; height: 20rem">
+            <img
+              src="${product.url_image ? product.url_image : 'no-image.jpg'}"
+              class="card-img-top"
+              alt="${product.name}"
+              style="width: auto; height: 240px"
+            />
+            <div class="card-body">
+              <h6 class="card-title">${product.name}</h6>
+              <p class="card-title">Price: $${product.price}</p>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
       `
     )
     .join('');
@@ -65,18 +68,20 @@ async function getProductsByCategory(id, name) {
   divContainerCards.innerHTML = products
     .map(
       product => `
-  <div class="col mb-3">
-    <div class="card" style="width: 12rem">
-    <img src="${
-      product.url_image ? product.url_image : 'no-image.jpg'
-    }" class="card-img-top" alt="${product.name}" />
-      <div class="card-body">
-        <h6 class="card-title">${product.name}</h6>
-        <p class="card-title">Price: $${product.price}</p>
-      </div>
-    </div>
-  </div>
-    `
+        <div class="col col-xs-12 col-sm-6 col-md-4 col-lg-3 mb-3 d-flex justify-content-center">
+          <div class="card" style="width: 14rem; height: 20rem">
+            <img
+              src="${product.url_image ? product.url_image : 'no-image.jpg'}"
+              class="card-img-top" alt="${product.name}"
+              style="width: auto; height: 240px"
+              />
+            <div class="card-body">
+              <h6 class="card-title">${product.name}</h6>
+              <p class="card-title">Price: $${product.price}</p>
+            </div>
+          </div>
+        </div>
+      `
     )
     .join('');
 }
@@ -100,18 +105,21 @@ form.onsubmit = async function (e) {
     divContainerCards.innerHTML = products
       .map(
         product => `
-    <div class="col mb-3">
-      <div class="card" style="width: 12rem">
-      <img src="${
-        product.url_image ? product.url_image : 'no-image.jpg'
-      }" class="card-img-top" alt="${product.name}" />
-        <div class="card-body">
-          <h6 class="card-title">${product.name}</h6>
-          <p class="card-title">Price: $${product.price}</p>
-        </div>
-      </div>
-    </div>
-      `
+          <div class="col col-xs-12 col-sm-6 col-md-4 col-lg-3 mb-3 d-flex justify-content-center">
+            <div class="card" style="width: 14rem; height: 20rem">
+              <img
+                src="${product.url_image ? product.url_image : 'no-image.jpg'}"
+                class="card-img-top"
+                alt="${product.name}"
+                style="width: auto; height: 240px"
+              />
+              <div class="card-body">
+                <h6 class="card-title">${product.name}</h6>
+                <p class="card-title">Price: $${product.price}</p>
+              </div>
+            </div>
+          </div>
+        `
       )
       .join('');
   }
@@ -120,7 +128,8 @@ form.onsubmit = async function (e) {
 /** Footer */
 
 footerID.innerHTML = `
-<div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-© ${new Date().getFullYear()} Copyright:
-<a class="text-dark" href="https://instagram.com/elisperezmusic" style="text-decoration-line: none;">Elis Antonio Perez</a>
-</div>`;
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    © ${new Date().getFullYear()} Copyright:
+    <a class="text-dark" href="https://instagram.com/elisperezmusic" style="text-decoration-line: none;">Elis Antonio Perez</a>
+  </div>
+  `;
