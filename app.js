@@ -17,6 +17,7 @@ function capitalizerFirstLetter(str) {
 }
 
 async function getItems() {
+  container.innerHTML = '';
   // Get all Categories:
   const categories = await fetch(urlCategories)
     .then(res => res.json())
@@ -72,6 +73,7 @@ async function getItems() {
 }
 
 async function getProductsByCategory(id, name) {
+  container.innerHTML = '';
   pageName.innerHTML = `${name}`;
 
   const products = await fetch(urlCategory + `?id=${id}`)
