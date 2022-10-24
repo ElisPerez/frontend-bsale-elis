@@ -1,8 +1,11 @@
 const pageName = document.querySelector('#page-name');
 const ulCategoryItems = document.querySelector('#ul-category-items');
-const divContainerCards = document.querySelector('#div-container-cards');
 const footerID = document.querySelector('#footer-id');
 const form = document.forms['form'];
+const container = document.querySelector('#container');
+
+const divContainerCards = $('#div-container-cards');
+const divPagination = $('#pagination-container');
 
 const urlCategory = 'http://localhost:8080/api/products/category';
 const urlCategories = 'http://localhost:8080/api/categories';
@@ -35,26 +38,37 @@ async function getItems() {
     .catch(err => console.log('getProducts error:', err));
   // console.log(products);
 
-  divContainerCards.innerHTML = products
-    .map(
-      product => `
-        <div class="col col-xs-12 col-sm-6 col-md-4 col-lg-3 mb-3 d-flex justify-content-center">
-          <div class="card" style="width: 14rem; height: 20rem">
-            <img
-              src="${product.url_image ? product.url_image : 'no-image.jpg'}"
-              class="card-img-top"
-              alt="${product.name}"
-              style="width: auto; height: 240px"
-            />
-            <div class="card-body">
-              <h6 class="card-title">${product.name}</h6>
-              <p class="card-title">Price: $${product.price}</p>
+  divPagination.pagination({
+    dataSource: products,
+    pageSize: 4,
+    callback: function (data, pagination) {
+      // console.log('pagination:', pagination);
+      let dataHTML = '<div class="row align-items-center d-flex justify-content-center">';
+
+      $.each(data, function (index, product) {
+        // console.log('index each:', index);
+        dataHTML += `
+          <div class="col col-xs-12 col-sm-6 col-md-4 col-lg-3 mb-3 d-flex justify-content-center">
+            <div class="card" style="width: 14rem; height: 20rem">
+              <img
+                src="${product.url_image ? product.url_image : 'no-image.jpg'}"
+                class="card-img-top"
+                alt="${product.name}"
+                style="width: auto; height: 240px"
+              />
+              <div class="card-body">
+                <h6 class="card-title">${product.name}</h6>
+                <p class="card-title">Price: $${product.price}</p>
+              </div>
             </div>
-          </div>
-        </div>
-      `
-    )
-    .join('');
+          </div>`;
+      });
+
+      dataHTML += '</div>';
+
+      divContainerCards.html(dataHTML);
+    },
+  });
 }
 
 async function getProductsByCategory(id, name) {
@@ -65,9 +79,16 @@ async function getProductsByCategory(id, name) {
     .catch(err => console.log('getProducts error:', err));
   // console.log(products);
 
-  divContainerCards.innerHTML = products
-    .map(
-      product => `
+  divPagination.pagination({
+    dataSource: products,
+    pageSize: 4,
+    callback: function (data, pagination) {
+      // console.log('pagination:', pagination);
+      let dataHTML = '<div class="row align-items-center d-flex justify-content-center">';
+
+      $.each(data, function (index, product) {
+        // console.log('index each:', index);
+        dataHTML += `
         <div class="col col-xs-12 col-sm-6 col-md-4 col-lg-3 mb-3 d-flex justify-content-center">
           <div class="card" style="width: 14rem; height: 20rem">
             <img
@@ -81,9 +102,14 @@ async function getProductsByCategory(id, name) {
             </div>
           </div>
         </div>
-      `
-    )
-    .join('');
+      `;
+      });
+
+      dataHTML += '</div>';
+
+      divContainerCards.html(dataHTML);
+    },
+  });
 }
 
 /** Search */
@@ -100,11 +126,22 @@ form.onsubmit = async function (e) {
   // console.log(products);
 
   if (products.length === 0) {
-    divContainerCards.innerHTML = `<div class="col mb-3"><h1>Producto No Encontrado</h1></div>`;
+    container.innerHTML = `<div class="col mb-3 d-flex justify-content-center"><h1>Producto No Encontrado</h1></div>`;
+    divContainerCards.html('');
+    divPagination.html('');
   } else {
-    divContainerCards.innerHTML = products
-      .map(
-        product => `
+    container.innerHTML = '';
+
+    divPagination.pagination({
+      dataSource: products,
+      pageSize: 4,
+      callback: function (data, pagination) {
+        // console.log('pagination:', pagination);
+        let dataHTML = '<div class="row align-items-center d-flex justify-content-center">';
+
+        $.each(data, function (index, product) {
+          // console.log('index each:', index);
+          dataHTML += `
           <div class="col col-xs-12 col-sm-6 col-md-4 col-lg-3 mb-3 d-flex justify-content-center">
             <div class="card" style="width: 14rem; height: 20rem">
               <img
@@ -119,9 +156,14 @@ form.onsubmit = async function (e) {
               </div>
             </div>
           </div>
-        `
-      )
-      .join('');
+        `;
+        });
+
+        dataHTML += '</div>';
+
+        divContainerCards.html(dataHTML);
+      },
+    });
   }
 };
 
