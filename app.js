@@ -1,3 +1,8 @@
+const urlCategory = 'http://localhost:8080/api/products/category';
+const urlCategories = 'http://localhost:8080/api/categories';
+const urlProducts = 'http://localhost:8080/api/products';
+const urlSearch = 'http://localhost:8080/api/products/search';
+
 const pageName = document.querySelector('#page-name');
 const ulCategoryItems = document.querySelector('#ul-category-items');
 const footerID = document.querySelector('#footer-id');
@@ -7,10 +12,6 @@ const container = document.querySelector('#container');
 const divContainerCards = $('#div-container-cards');
 const divPagination = $('#pagination-container');
 
-const urlCategory = 'http://localhost:8080/api/products/category';
-const urlCategories = 'http://localhost:8080/api/categories';
-const urlProducts = 'http://localhost:8080/api/products';
-const urlSearch = 'http://localhost:8080/api/products/search';
 
 function capitalizerFirstLetter(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
