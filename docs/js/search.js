@@ -44,7 +44,7 @@ form.onsubmit = async function (e) {
           <div class="col col-xs-12 col-sm-6 col-md-4 col-lg-3 mb-3 d-flex justify-content-center">
             <div class="card" style="width: 14rem; height: 20rem">
               <img
-                src="${product.url_image ? product.url_image : '/img/no-image.jpg'}"
+                src="${product.url_image ? product.url_image : '/frontend-bsale-elis/img/no-image.jpg'}"
                 class="card-img-top"
                 alt="${product.name}"
                 style="width: auto; height: 240px"
