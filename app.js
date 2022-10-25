@@ -12,21 +12,30 @@ const container = document.querySelector('#container');
 const divContainerCards = $('#div-container-cards');
 const divPagination = $('#pagination-container');
 
-// Transforma en mayúscula la primera letra de un string
+/**
+ * capitalizerFirstLetter: It takes a string, capitalizes the first letter, and returns the new string
+ * @param str - The string to capitalize.
+ * @returns The first letter of the string is being capitalized and the rest of the string is being
+ * returned.
+ */
 function capitalizerFirstLetter(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-// getItems muestra en el html las categorias y los productos.
+/**
+ * The function getItems() is an asynchronous function that fetches the data from the API and returns
+ * the categories and products as a JSON object
+ */
 async function getItems() {
-  // Limpiamos contenedor
+  /* Cleaning the container. */
   container.innerHTML = '';
-  // Get all Categories:
+
+  /* Get all Categories: Fetching the data from the API and returning categories as a JSON object. */
   const categories = await fetch(urlCategories)
     .then(res => res.json())
     .catch(err => console.log('getCategories error:', err));
-  // console.log(categories);
 
+  /* Creating a list of categories. */
   ulCategoryItems.innerHTML = categories
     .map(category => {
       let name = capitalizerFirstLetter(category.name);
@@ -36,22 +45,21 @@ async function getItems() {
     })
     .join('');
 
-  // Get All Products
+  /* Get All Products:Fetching the data from the API and returning products as a JSON object. */
   const products = await fetch(urlProducts)
     .then(res => res.json())
     .catch(err => console.log('getProducts error:', err));
-  // console.log(products);
 
-  // Paginamos los productos
+  /* Pagination plugin that is being used to paginate the products. */
   divPagination.pagination({
     dataSource: products,
     pageSize: 4,
     callback: function (data, pagination) {
-      // console.log('pagination:', pagination);
+      /* Creating a variable called dataHTML and Add the opening div tag to it. */
       let dataHTML = '<div class="row align-items-center d-flex justify-content-center">';
 
+      /* jQuery function to assign all cards to the dataHTML variable */
       $.each(data, function (index, product) {
-        // console.log('index each:', index);
         dataHTML += `
           <div class="col col-xs-12 col-sm-6 col-md-4 col-lg-3 mb-3 d-flex justify-content-center">
             <div class="card" style="width: 14rem; height: 20rem">
@@ -69,36 +77,43 @@ async function getItems() {
           </div>`;
       });
 
+      /* Adding the closing div tag to the variable dataHTML. */
       dataHTML += '</div>';
 
+      /* Replacing the content of the div with the id of 'div-container-cards' with the content of the
+      variable dataHTML. */
       divContainerCards.html(dataHTML);
     },
   });
 }
 
+/**
+ * It gets the products of a category and displays them in the page
+ * @param id - The id of the category.
+ * @param name - The name of the parameter.
+ */
 async function getProductsByCategory(id, name) {
-  // Limpiamos contenedor
+  /* Cleaning the container. */
   container.innerHTML = '';
 
-  // Cambiamos titulo
+  /* Changing the name of the page (h1). */
   pageName.innerHTML = `${name}`;
 
-  // Llamado a la API para obtener productos
+  /* Get Products by Category ID: Fetching the data from the API and returning products as a JSON object. */
   const products = await fetch(urlCategory + `?id=${id}`)
     .then(res => res.json())
     .catch(err => console.log('getProducts error:', err));
-  // console.log(products);
 
-  // Paginación
+  /* Pagination plugin that is being used to paginate the products. */
   divPagination.pagination({
     dataSource: products,
     pageSize: 4,
     callback: function (data, pagination) {
-      // console.log('pagination:', pagination);
+      /* Creating a variable called dataHTML and Add the opening div tag to it. */
       let dataHTML = '<div class="row align-items-center d-flex justify-content-center">';
 
+      /* jQuery function to assign all cards to the dataHTML variable */
       $.each(data, function (index, product) {
-        // console.log('index each:', index);
         dataHTML += `
         <div class="col col-xs-12 col-sm-6 col-md-4 col-lg-3 mb-3 d-flex justify-content-center">
           <div class="card" style="width: 14rem; height: 20rem">
@@ -116,47 +131,52 @@ async function getProductsByCategory(id, name) {
       `;
       });
 
+      /* Adding the closing div tag to the variable dataHTML. */
       dataHTML += '</div>';
 
+      /* Replacing the content of the div with the id of 'div-container-cards' with the content of the variable dataHTML. */
       divContainerCards.html(dataHTML);
     },
   });
 }
 
-/** Search */
+/* Search: function that is being called when the form is being submitted. */
 form.onsubmit = async function (e) {
   e.preventDefault();
 
-  // Cambiamos titulo
+  /* Changing the name of the page (h1). */
   pageName.innerHTML = `Search`;
-  const search = document.form.search.value;
-  // console.log(search);
 
-  // Llamado a la API
+  /* Getting the value of the input with the name of 'search'. */
+  const search = document.form.search.value;
+
+  /* Get products: Fetching the data from the API and returning products as a JSON object. */
   const products = await fetch(urlSearch + `?q=${search}`)
     .then(res => res.json())
     .catch(err => console.log('getProducts error:', err));
-  // console.log(products);
 
-  // Condicionamos la vista a que muestre un Mensaje o los productos.
+  /* Checking if the products array is empty. If it is empty, it is displaying a message saying that the product was not found. If it is not empty, it is cleaning the container and displaying the products. */
   if (products.length === 0) {
+    /* Cleaning the container and displaying a message saying that the product was not found. */
     container.innerHTML = `<div class="col mb-3 d-flex justify-content-center"><h1>Producto No Encontrado</h1></div>`;
+
+    /* Cleaning the container and the pagination. */
     divContainerCards.html('');
     divPagination.html('');
   } else {
-    // Limpiamos el contenedor
+    /* Cleaning the container. */
     container.innerHTML = '';
 
-    // Paginamos los resultados
+    /* Pagination plugin that is being used to paginate the products. */
     divPagination.pagination({
       dataSource: products,
       pageSize: 4,
       callback: function (data, pagination) {
-        // console.log('pagination:', pagination);
+        /* Creating a variable called dataHTML and Add the opening div tag to it. */
         let dataHTML = '<div class="row align-items-center d-flex justify-content-center">';
 
+        /* jQuery function to assign all cards to the dataHTML variable */
         $.each(data, function (index, product) {
-          // console.log('index each:', index);
           dataHTML += `
           <div class="col col-xs-12 col-sm-6 col-md-4 col-lg-3 mb-3 d-flex justify-content-center">
             <div class="card" style="width: 14rem; height: 20rem">
@@ -175,16 +195,17 @@ form.onsubmit = async function (e) {
         `;
         });
 
+        /* Adding the closing div tag to the variable dataHTML. */
         dataHTML += '</div>';
 
+        /* Replacing the content of the div with the id of 'div-container-cards' with the content of the variable dataHTML. */
         divContainerCards.html(dataHTML);
       },
     });
   }
 };
 
-/** Footer */
-
+/* Creating the footer with current Year and a Link to instagram. */
 footerID.innerHTML = `
   <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
     © ${new Date().getFullYear()} Copyright:

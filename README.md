@@ -20,3 +20,15 @@ Follow me [Instagram](https://instagram.com/elisperezmusic).
 ## Despliegue en GitHub Pages:
 
 - Se creó la carpeta `docs/` con copia de los archivos index.html y app.js modificando los links que apuntan al backend en el servidor REMOTO (Heroku).
+
+# Gracias por pasarme a esta segunda etapa. 🤩
+
+# Feedback
+
+- Se creó nueva rama `FEEDBACK` para agregar/probar los nuevos cambios.
+- Se agregó documentación en cada pieza de código.
+- Descripción de los archivos y carpetas:
+  - index.html: Contiene la estructura de la pagina web y el llamado a los scripts.
+  - app.js: Contiene las funciones para solicitud de datos al server y generar html en base a los datos recibidos.
+  - no-image.jpg: Imagen mostrada en los productos que no tienen imagenes.
+  - Carpeta docs: Se creó esta carpeta para agregar copia de todos los archivos cambiando los endpoints por los del server remoto. El nombre "docs" es por GitHub Pages para elegir esta carpeta para ser mostrada como root.
