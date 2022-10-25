@@ -26,9 +26,17 @@ Follow me [Instagram](https://instagram.com/elisperezmusic).
 # Feedback
 
 - Se creó nueva rama `FEEDBACK` para agregar/probar los nuevos cambios.
+- Se mejoró el diseño responsive de las cards.
 - Se agregó documentación en cada pieza de código.
-- Descripción de los archivos y carpetas:
+
+# Actualización por modulos. Nueva orgacización de archivos y carpetas.
+
+- Se creó nueva rama `MODULES` para agregar/probar los nuevos cambios.
+- Nueva estructura de archivos y carpetas:
   - index.html: Contiene la estructura de la pagina web y el llamado a los scripts.
-  - app.js: Contiene las funciones para solicitud de datos al server y generar html en base a los datos recibidos.
-  - no-image.jpg: Imagen mostrada en los productos que no tienen imagenes.
+  - img/no-image.jpg: Imagen mostrada en los productos que no tienen imagenes.
+  - js/footer.js: Contiene función para generar HTML footer.
+  - js/getItems.js: Genera contenido HTML con la info de la database.
+  - js/getProductsByCategory.js: Genera contenido HTML al darle click a las categorias.
+  - js/search.js: Genera contenido HTML con los resultados de la búsqueda.
   - Carpeta docs: Se creó esta carpeta para agregar copia de todos los archivos cambiando los endpoints por los del server remoto. El nombre "docs" es por GitHub Pages para elegir esta carpeta para ser mostrada como root.
