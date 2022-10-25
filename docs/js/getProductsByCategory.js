@@ -9,7 +9,7 @@ const divPagination = $('#pagination-container');
 /**
  * It gets the products of a category and displays them in the page
  * @param id - The id of the category.
- * @param name - The name of the parameter.
+ * @param name - The name of the category.
  */
  async function getProductsByCategory(id, name) {
   /* Cleaning the container. */
