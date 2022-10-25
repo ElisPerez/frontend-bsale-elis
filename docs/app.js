@@ -158,7 +158,7 @@ form.onsubmit = async function (e) {
   /* Checking if the products array is empty. If it is empty, it is displaying a message saying that the product was not found. If it is not empty, it is cleaning the container and displaying the products. */
   if (products.length === 0) {
     /* Cleaning the container and displaying a message saying that the product was not found. */
-    container.innerHTML = `<div class="col mb-3 d-flex justify-content-center"><h1>Producto No Encontrado</h1></div>`;
+    container.innerHTML = `<div class="col mb-3 d-flex justify-content-center"><h2>Producto No Encontrado</h2></div>`;
 
     /* Cleaning the container and the pagination. */
     divContainerCards.html('');
