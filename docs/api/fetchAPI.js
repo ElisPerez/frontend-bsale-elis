@@ -11,9 +11,10 @@ export const fetchAPI = async path => {
 };
 
 /**
- * ?: Enpoints like this:
- * All products: 'http://localhost:8080/api/products';
- * Products by category: 'http://localhost:8080/api/products/category?id=1';
- * All categories: 'http://localhost:8080/api/categories'
- * Search: 'http://localhost:8080/api/products/search?q=red'
+ * ?: Server Enpoints like this:
+ * All products: 'https://bsale-shop-backend-elis.herokuapp.com/api/products';
+ * Products by category: 'https://bsale-shop-backend-elis.herokuapp.com/api/products/category?id=1';
+ * All categories: 'https://bsale-shop-backend-elis.herokuapp.com/api/categories'
+ * Search: 'https://bsale-shop-backend-elis.herokuapp.com/api/products/search?q=red'
+ * Access Denied: https://bsale-shop-backend-elis.herokuapp.com/
  */

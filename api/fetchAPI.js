@@ -11,9 +11,10 @@ export const fetchAPI = async path => {
 };
 
 /**
- * ?: Enpoints like this:
+ * ?: Server Enpoints like this:
  * All products: 'http://localhost:8080/api/products';
  * Products by category: 'http://localhost:8080/api/products/category?id=1';
  * All categories: 'http://localhost:8080/api/categories'
  * Search: 'http://localhost:8080/api/products/search?q=red'
+ * Access Denied: 'http://localhost:8080/'
  */
