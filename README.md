@@ -43,3 +43,4 @@ Follow me [Instagram](https://instagram.com/elisperezmusic).
   - js/helpers: Funciona adicional que capitaliza un string.
   - js/search.js: Genera contenido HTML con los resultados de la búsqueda.
   - Carpeta `docs/`: Es para el despliegue en GitHub Pages. Se creó esta carpeta con la copia de todos los archivos cambiando los endpoints por los del server remoto. El nombre "docs" es por GitHub Pages para elegir esta carpeta para ser mostrada como root.
+- Se fusionó la rama modules a `MAIN`.
