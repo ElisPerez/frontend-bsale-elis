@@ -2,6 +2,8 @@
 
 Tienda virtual demo para desafío de admisión laboral.
 
+Visitar: [https://elisperez.github.io/frontend-bsale-elis/](https://elisperez.github.io/frontend-bsale-elis/)
+
 ## Elis Antonio Perez
 
 Follow me [Instagram](https://instagram.com/elisperezmusic).
@@ -38,5 +40,6 @@ Follow me [Instagram](https://instagram.com/elisperezmusic).
   - js/footer.js: Contiene función para generar HTML footer.
   - js/getItems.js: Genera contenido HTML con la info de la database.
   - js/getProductsByCategory.js: Genera contenido HTML al darle click a las categorias.
+  - js/helpers: Funciona adicional que capitaliza un string.
   - js/search.js: Genera contenido HTML con los resultados de la búsqueda.
-  - Carpeta docs: Se creó esta carpeta para agregar copia de todos los archivos cambiando los endpoints por los del server remoto. El nombre "docs" es por GitHub Pages para elegir esta carpeta para ser mostrada como root.
+  - Carpeta `docs/`: Es para el despliegue en GitHub Pages. Se creó esta carpeta con la copia de todos los archivos cambiando los endpoints por los del server remoto. El nombre "docs" es por GitHub Pages para elegir esta carpeta para ser mostrada como root.
