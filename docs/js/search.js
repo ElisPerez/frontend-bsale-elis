@@ -55,7 +55,7 @@ form.onsubmit = async function (e) {
                 src="${product.url_image ? product.url_image : '/frontend-bsale-elis/img/no-image.jpg'}"
                 class="card-img-top"
                 alt="${product.name}"
-                style="width: auto; height: 240px"
+                style="width: auto; height: 14rem"
               />
               <div class="card-body">
                 <h6 class="card-title">${product.name}</h6>
