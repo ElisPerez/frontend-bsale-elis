@@ -1,6 +1,8 @@
 import { fetchAPI } from '../api/fetchAPI.js';
 
+const pageName = document.querySelector('#page-name');
 const container = document.querySelector('#container');
+const btnSearch = document.querySelector('#idbutton');
 
 const divContainerCards = $('#div-container-cards');
 const divPagination = $('#pagination-container');
@@ -8,6 +10,9 @@ const divPagination = $('#pagination-container');
 /* Search: function that is being called when the form is being submitted. */
 form.onsubmit = async function (e) {
   e.preventDefault();
+
+  /* Disabling the button so that the user cannot click on it while the data is being fetched. */
+  btnSearch.disabled = true;
 
   /* Changing the name of the page (h1). */
   pageName.innerHTML = `Search`;
@@ -26,6 +31,9 @@ form.onsubmit = async function (e) {
     /* Cleaning the container and the pagination. */
     divContainerCards.html('');
     divPagination.html('');
+
+    /* Enabling the button again so that the user can click on it. */
+    btnSearch.disabled = false;
   } else {
     /* Cleaning the container. */
     container.innerHTML = '';
@@ -63,6 +71,9 @@ form.onsubmit = async function (e) {
 
         /* Replacing the content of the div with the id of 'div-container-cards' with the content of the variable dataHTML. */
         divContainerCards.html(dataHTML);
+
+        /* Enabling the button again so that the user can click on it. */
+        btnSearch.disabled = false;
       },
     });
   }

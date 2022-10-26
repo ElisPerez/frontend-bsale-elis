@@ -1,20 +1,11 @@
 import { fetchAPI } from '../api/fetchAPI.js';
+import { capitalizerFirstLetter } from './helpers.js';
 
 const ulCategoryItems = document.querySelector('#ul-category-items');
 const container = document.querySelector('#container');
 
 const divContainerCards = $('#div-container-cards');
 const divPagination = $('#pagination-container');
-
-/**
- * capitalizerFirstLetter: It takes a string, capitalizes the first letter, and returns the new string
- * @param str - The string to capitalize.
- * @returns The first letter of the string is being capitalized and the rest of the string is being
- * returned.
- */
-function capitalizerFirstLetter(str) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}
 
 /**
  * The function getItems() is an asynchronous function that fetches the data from the API and returns
@@ -27,15 +18,13 @@ async function getItems() {
   container.innerHTML = '';
 
   /* Get all Categories: Fetching the data from the API and returning categories as a JSON object. */
-  const categories = await fetchAPI('/categories')
+  const categories = await fetchAPI('/categories');
 
   /* Creating a list of categories. */
   ulCategoryItems.innerHTML = categories
     .map(category => {
       let name = capitalizerFirstLetter(category.name);
-      return `
-    <li onclick="getProductsByCategory(${category.id}, '${name}')"><a class="dropdown-item" href="#">${name}</a></li>
-    `;
+      return `<li class="liitems" id="idc${category.id}"><a id="ida${category.id}" class="dropdown-item" href="#">${name}</a></li>`;
     })
     .join('');
 
@@ -78,6 +67,3 @@ async function getItems() {
     },
   });
 }
-
-
-
