@@ -9,15 +9,15 @@ const divPagination = $('#pagination-container');
 /* Creating empty array called liItems to save the list of categories. */
 const liItems = [];
 
-/* Waiting for 2 seconds to get the elements with the class of 'liitems' and push them to the array
+/* Waiting for 3 seconds to get the elements with the class of 'liitems' and push them to the array
 called liItems. */
 setTimeout(() => {
   const array = document.querySelectorAll('.liitems');
   liItems.push(array);
-}, 2000);
+}, 3000);
 
 /**
- * Waiting for 2 seconds to gets the products of a category and displays them in the page
+ * Waiting for 3.5 seconds to gets the products of a category and displays them in the page
  */
 setTimeout(() => {
   liItems[0].forEach(liItem =>
@@ -70,4 +70,4 @@ setTimeout(() => {
       });
     })
   );
-}, 2000);
+}, 3500);
