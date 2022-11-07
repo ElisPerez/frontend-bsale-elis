@@ -4,6 +4,6 @@ const footerID = document.querySelector('#footer-id');
 footerID.innerHTML = `
       <div class="text-center p-2" style="background-color: rgba(0, 0, 0, 0.2);">
         © ${new Date().getFullYear()} Copyright:
-        <a class="text-dark" href="https://instagram.com/elisperezmusic" style="text-decoration-line: none;">Elis Antonio Perez</a>
+        <a class="text-dark" href="https://instagram.com/elisperezmusic" target=”_blank” style="text-decoration-line: none;">Elis Antonio Perez</a>
       </div>
       `;
