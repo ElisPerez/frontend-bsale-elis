@@ -1,11 +1,10 @@
 import { fetchAPI } from '../api/fetchAPI.js';
+import { listItems } from './getProductsByCategory.js';
 import { capitalizerFirstLetter } from './helpers.js';
+import { pagination } from './pagination.js';
 
 const ulCategoryItems = document.querySelector('#ul-category-items');
 const container = document.querySelector('#container');
-
-const divContainerCards = $('#div-container-cards');
-const divPagination = $('#pagination-container');
 
 /**
  * The function getItems() is an asynchronous function that fetches the data from the API and returns
@@ -28,42 +27,9 @@ async function getItems() {
     })
     .join('');
 
-  /* Get All Products:Fetching the data from the API and returning products as a JSON object. */
-  const products = await fetchAPI('/products');
+  /* Call listItems para crear el array. */
+  listItems();
 
-  /* Pagination plugin that is being used to paginate the products. */
-  divPagination.pagination({
-    dataSource: products,
-    pageSize: 4,
-    callback: function (data, pagination) {
-      /* Creating a variable called dataHTML and Add the opening div tag to it. */
-      let dataHTML = '<div class="row align-items-center d-flex justify-content-center">';
-
-      /* jQuery function to assign all cards to the dataHTML variable */
-      $.each(data, function (index, product) {
-        dataHTML += `
-          <div class="col col-xs-12 col-sm-6 col-md-4 col-lg-3 mb-3 d-flex justify-content-center">
-            <div class="card" style="width: 14rem; height: 20rem">
-              <img
-                src="${product.url_image ? product.url_image : '/frontend-bsale-elis/img/no-image.jpg'}"
-                class="card-img-top"
-                alt="${product.name}"
-                style="width: auto; height: 14rem"
-              />
-              <div class="card-body">
-                <h6 class="card-title">${product.name}</h6>
-                <p class="card-title">Price: $${product.price}</p>
-              </div>
-            </div>
-          </div>`;
-      });
-
-      /* Adding the closing div tag to the variable dataHTML. */
-      dataHTML += '</div>';
-
-      /* Replacing the content of the div with the id of 'div-container-cards' with the content of the
-      variable dataHTML. */
-      divContainerCards.html(dataHTML);
-    },
-  });
+  /* Calling the function pagination() from the file pagination.js. */
+  pagination('https://bsale-shop-backend-elis.herokuapp.com/api/products');
 }
